@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    environment {
+        WORKER_NODE_IP = '192.168.150.131'
+        GIT_REPO = 'https://github.com/tuhinmiazy73/test-repo.git'
+    }
+
+    stages {
+        stage('Test SSH Login to Worker Node') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'JenkinsToWorkerSSH', keyFileVariable: 'SSH_KEY')]) {
+                    sh '''
+                        ssh -i $SSH_KEY -o StrictHostKeyChecking=no root@${WORKER_NODE_IP} "echo '✅ SSH Login Successful'"
+                    '''
+                }
+            }
+        }
+
+        stage('Clone Git Repo on Worker Node') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'JenkinsToWorkerSSH', keyFileVariable: 'SSH_KEY')]) {
+                    sh """
+                        ssh -i $SSH_KEY -o StrictHostKeyChecking=no root@${WORKER_NODE_IP} '
+                            rm -rf test-repo && \
+                            git clone ${GIT_REPO}
+                        '
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        failure {
+            echo "❌ Pipeline failed. Please check logs."
+        }
+        success {
+            echo "✅ Pipeline executed successfully."
+        }
+    }
+}
