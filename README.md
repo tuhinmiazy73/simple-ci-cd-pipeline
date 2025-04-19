@@ -29,11 +29,7 @@ Add your SSH private key (id_rsa) to Jenkins credentials as SSH Username with pr
 Ensure Git is installed on your production server:
 # yum install git 
 
-✅ 6. Manual Test (Optional but Smart)
-Manually run this from Jenkins server to confirm:
-# ssh root@192.168.150.131 "git clone https://github.com/yourusername/yourrepo.git"
-
-✅ 7. Create the Jenkins Pipeline
+✅ 6. Create the Jenkins Pipeline
 Here’s a sample declarative pipeline:
 
 pipeline {
