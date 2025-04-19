@@ -1,13 +1,17 @@
 In this article, we’ll walk through creating a Jenkins CI/CD pipeline that automates cloning a GitHub repository into a remote production server via SSH, step-by-step.
 
 📌 Step-by-Step Guide
+
 ✅ 1. Create a Git Repository
+
 Start by pushing your project to a GitHub repository.
 
 ✅ 2. Add GitHub Credentials to Jenkins
+
 Go to Manage Jenkins → Credentials and add your GitHub username & Personal Access Token (or password) as a credential. This enables Jenkins to interact with GitHub securely.
 
 ✅ 3. Setup SSH Access to the Remote Server
+
 On your Jenkins server, generate an SSH key (if not already present):
 # ssh-keygen -t rsa -b 4096 -C "jenkins@yourdomain.com"
 
