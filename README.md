@@ -21,7 +21,6 @@ Copy the public key (id_rsa.pub) to your remote production server:
 Test it:
 # ssh root@192.168.150.131
 
-✅ You’re in!
 ✅ 4. Add Jenkins SSH Private Key to Credential Manager
 Add your SSH private key (id_rsa) to Jenkins credentials as SSH Username with private key.
 
