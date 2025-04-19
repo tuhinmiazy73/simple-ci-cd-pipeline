@@ -13,13 +13,13 @@ Go to Manage Jenkins → Credentials and add your GitHub username & Personal Acc
 ✅ 3. Setup SSH Access to the Remote Server
 
 On your Jenkins server, generate an SSH key (if not already present):
-# ssh-keygen -t rsa -b 4096 -C "jenkins@yourdomain.com"
+# ssh-keygen -t rsa -b 4096
 
 Copy the public key (id_rsa.pub) to your remote production server:
-# ssh-copy-id root@<production-server-ip>
+# ssh-copy-id root@192.168.150.131
 
 Test it:
-# ssh root@<production-server-ip>
+# ssh root@192.168.150.131
 
 ✅ You’re in!
 ✅ 4. Add Jenkins SSH Private Key to Credential Manager
@@ -27,11 +27,11 @@ Add your SSH private key (id_rsa) to Jenkins credentials as SSH Username with pr
 
 ✅ 5. Install Git on the Remote Server
 Ensure Git is installed on your production server:
-# sudo yum install git 
+# yum install git 
 
 ✅ 6. Manual Test (Optional but Smart)
 Manually run this from Jenkins server to confirm:
-# ssh root@<prod-server> "git clone https://github.com/yourusername/yourrepo.git"
+# ssh root@192.168.150.131 "git clone https://github.com/yourusername/yourrepo.git"
 
 ✅ 7. Create the Jenkins Pipeline
 Here’s a sample declarative pipeline:
